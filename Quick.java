@@ -20,6 +20,7 @@ public class Quick {
     public static void sort(int[] a) {
         // To do: try randomising the array before sorting.
         if(isSorted(a)) return;
+        StdRandom.shuffle(a);
         maxDepth=(int)(Math.log10(a.length)*3);
         sort(a, 0, a.length - 1,1);
         assert isSorted(a);
