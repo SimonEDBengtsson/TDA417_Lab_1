@@ -172,6 +172,7 @@ public class Bench {
         executionTimeReport("Insertion.java: insertion sort", Insertion::sort);
         executionTimeReport("Quick.java: quicksort", Quick::sort);
         executionTimeReport("Merge.java: merge sort", Merge::sort);
+        executionTimeReport("Heap.java: heapsort", Heap::sort);
         executionTimeReport("Arrays.sort: Java built-in sorting", Arrays::sort);
     }
 }
