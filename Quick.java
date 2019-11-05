@@ -16,20 +16,32 @@ public class Quick {
      * Rearranges the array in ascending order, using the natural order.
      * @param a the array to be sorted
      */
+    private static int maxDepth=100;
     public static void sort(int[] a) {
         // To do: try randomising the array before sorting.
-        sort(a, 0, a.length - 1);
+        //if(isSorted(a)) return;
+        maxDepth=(int)(Math.log10(a.length)*3);
+        sort(a, 0, a.length - 1,1);
         assert isSorted(a);
     }
 
     // quicksort the subarray from a[lo] to a[hi]
-    public static void sort(int[] a, int lo, int hi) { 
+    public static void sort(int[] a, int lo, int hi, int depth) {
         // To do: try switching to insertion sort if a[lo..hi] is small.
         if (hi <= lo) return;
+        if(hi-lo<10){
+            Insertion.sort(a,lo,hi);
+            return;
+        }
+        if (depth>maxDepth){
+            Heap.sort(a,lo,hi);
+            return;
+        }
+
 
         int j = partition(a, lo, hi);
-        sort(a, lo, j-1);
-        sort(a, j+1, hi);
+        sort(a, lo, j-1,depth+1);
+        sort(a, j+1, hi,depth+1);
         assert isSorted(a, lo, hi);
     }
 
