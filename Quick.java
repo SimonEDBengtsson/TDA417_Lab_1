@@ -9,6 +9,7 @@
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
+import java.awt.*;
 import java.util.*;
 
 public class Quick {
@@ -21,7 +22,7 @@ public class Quick {
         // To do: try randomising the array before sorting.
         if(isSorted(a)) return;
         StdRandom.shuffle(a);
-        maxDepth=(int)(Math.log10(a.length)*3);
+        maxDepth=(int)(Math.log10(a.length)*5);
         sort(a, 0, a.length - 1,1);
         assert isSorted(a);
     }
@@ -32,10 +33,6 @@ public class Quick {
         if (hi <= lo) return;
         if(hi-lo<10){
             Insertion.sort(a,lo,hi);
-            return;
-        }
-        if (depth>maxDepth){
-            Heap.sort(a,lo,hi);
             return;
         }
 
@@ -52,31 +49,26 @@ public class Quick {
         // To do: find the median of the first, last and middle
         // elements of a[lo..hi], and swap that index with a[lo].
 
-        int i = lo;
-        int j = hi + 1;
-        int v = a[lo];
-
-        // a[lo] is unique largest element
-        while (a[++i] < v) {
-            if (i == hi) { exch(a, lo, hi); return hi; }
-        }
-
-        // a[lo] is unique smallest element
-        while (v < a[--j]) {
-            if (j == lo + 1) return lo;
-        }
-
+        int pivot=median3(a,lo,hi,(lo+hi)/2);
+        exch(a,pivot,hi);
+        int v=a[hi];
         // the main loop
+        int i = lo;
+        int j = hi-1;
         while (i < j) {
+            while (a[i] <= v && i!=j){
+                i++;
+            }
+            while (v <= a[j] && i!=j){
+                j--;
+            }
             exch(a, i, j);
-            while (a[++i] < v) ;
-            while (v < a[--j]) ;
         }
-
-        // put partitioning item v at a[j]
-        exch(a, lo, j);
-
-        // now, a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
+        if(v>a[j]) {
+            exch(a, hi, j+1);
+            return j+1;
+        }
+        exch(a,hi,j);
         return j;
     }
 
