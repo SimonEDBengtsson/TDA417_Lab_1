@@ -1,0 +1,39 @@
+Task 1: figuring out the complexity
+-----------------------------------
+
+Insertion.java on:
+  random inputs: ????
+  95% sorted inputs: ????
+  sorted inputs: ????
+
+Quick.java on:
+  random inputs: ????
+  95% sorted inputs: ????
+  sorted inputs: ????
+
+Merge.java on:
+  random inputs: ????
+  95% sorted inputs: ????
+  sorted inputs: ????
+
+Arrays.sort on:
+  random inputs: n lg n
+  95% sorted inputs: ????
+  sorted inputs: ????
+
+Task 2: improving quicksort
+---------------------------
+
+Do the following changes affect the complexity of quicksort on any kind of
+input data? If so, what is it that changes?
+
+  Shuffling the array first: [no] [yes+reason]
+
+  Median-of-three pivot selection: [no] [yes+reason]
+
+  Insertion sort for small arrays: [no] [yes+reason]
+  
+Which combination of improvements gives the best result?
+If you use insertion sort for small arrays, say what cutoff you used.
+
+[...answer here...]
