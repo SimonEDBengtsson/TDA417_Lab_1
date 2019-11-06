@@ -18,11 +18,11 @@ public class Quick {
      * @param a the array to be sorted
      */
     private static int maxDepth=100;
+    private static final int insertionSortSizeLimit=30;
     public static void sort(int[] a) {
         // To do: try randomising the array before sorting.
         if(isSorted(a)) return;
-        StdRandom.shuffle(a);
-        maxDepth=(int)(Math.log10(a.length)*5);
+        maxDepth=(int)(Math.log(a.length)*5);
         sort(a, 0, a.length - 1,1);
         assert isSorted(a);
     }
@@ -31,8 +31,12 @@ public class Quick {
     public static void sort(int[] a, int lo, int hi, int depth) {
         // To do: try switching to insertion sort if a[lo..hi] is small.
         if (hi <= lo) return;
-        if(hi-lo<10){
+        if((hi-lo)<insertionSortSizeLimit){
             Insertion.sort(a,lo,hi);
+            return;
+        }
+        if(depth>maxDepth){
+            Heap.sort(a,lo,hi);
             return;
         }
 
@@ -45,13 +49,11 @@ public class Quick {
 
     // partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi]
     // and return the index j.
-    private static int partition(int[] a, int lo, int hi) {
-        // To do: find the median of the first, last and middle
-        // elements of a[lo..hi], and swap that index with a[lo].
-
+    private static int partition(int[] a, int lo, int hi){
+        // choose pivot as median of first, middle and last, swap it to end
         int pivot=median3(a,lo,hi,(lo+hi)/2);
         exch(a,pivot,hi);
-        int v=a[hi];
+        int v=a[hi];// pivot value
         // the main loop
         int i = lo;
         int j = hi-1;
