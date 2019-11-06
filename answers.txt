@@ -27,13 +27,20 @@ Task 2: improving quicksort
 Do the following changes affect the complexity of quicksort on any kind of
 input data? If so, what is it that changes?
 
-  Shuffling the array first: [no] [yes+reason]
+  Shuffling the array first: Yes, shuffling the array turns sorted input into unsorted input, thereby avoiding the worst case scenario.
+  Simply checking if the array is already sorted however brings it down to linear time for sorted inputs.
 
-  Median-of-three pivot selection: [no] [yes+reason]
+  Median-of-three pivot selection: Yes, median 3 guarantees a fairly optimal pivot for sorted inputs, thereby avoiding quadratic time in most cases.
+  It should be noted that arrays can be crafted to degrade the performance or cause a stack overflow, switching to merge or heap sort at high recursion
+  depth can prevent this.
 
-  Insertion sort for small arrays: [no] [yes+reason]
+  Insertion sort for small arrays: Yes, insertion sort is linear time for sorted arrays, any array at or smaller than the threshold for "small" that
+  are already sorted will therefore be linear time rather than quadratic. Thanks to lower overhead it's generally faster than quicksort for small arrays.
   
 Which combination of improvements gives the best result?
 If you use insertion sort for small arrays, say what cutoff you used.
 
-[...answer here...]
+1. Checking if the array is sorted.
+2. Median-of-3 pivot selection.
+3. Switch to insertion sort for lists with less than 30 elements.
+4. Switch to heap sort if recursion depth exceeds log(a.length)*5 (mainly to protect against stack overflow).
