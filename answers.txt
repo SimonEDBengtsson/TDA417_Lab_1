@@ -2,24 +2,24 @@ Task 1: figuring out the complexity
 -----------------------------------
 
 Insertion.java on:
-  random inputs: ????
-  95% sorted inputs: ????
-  sorted inputs: ????
+  random inputs: O(n^2)
+  95% sorted inputs: O(n^2)
+  sorted inputs: O(n)
 
 Quick.java on:
-  random inputs: ????
-  95% sorted inputs: ????
-  sorted inputs: ????
+  random inputs: O(nlog(n))
+  95% sorted inputs: O(nlog(n))
+  sorted inputs: O(n^2)
 
 Merge.java on:
-  random inputs: ????
-  95% sorted inputs: ????
-  sorted inputs: ????
+  random inputs: O(nlog(n))
+  95% sorted inputs: O(nlog(n))
+  sorted inputs: O(nlog(n))
 
 Arrays.sort on:
   random inputs: n lg n
-  95% sorted inputs: ????
-  sorted inputs: ????
+  95% sorted inputs: O(nlog(n))
+  sorted inputs: O(n)
 
 Task 2: improving quicksort
 ---------------------------
